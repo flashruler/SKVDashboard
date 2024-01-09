@@ -11,9 +11,9 @@ def retrieveActiveMatch(event,server):
     match=query["matches"]
     return match
 
-def getActiveEvents(eventCodes,server):
+def getActiveEvents(event,server):
     activeEvents=[]
-    for x in eventCodes:
+    for x in event:
         event= requests.get("http://"+server+"/api/v1/events/"+x).json()
         if(event["status"]=="Qualifications"):
             activeEvents.append(x)
@@ -30,3 +30,9 @@ def retrieveTournamentMatch(match,interleavedSchedule):
             isActive=True
 
     return matchNumber,isActive
+
+def determineActiveLeague(eventCodes,server):
+    for x in eventCodes:
+        activeMatch=retrieveActiveMatch(x,server)
+        if activeMatch and activeMatch[0]["matchState"]!= "UNPLAYED" or activeMatch[0]["matchState"]!= "REVIEW":
+            print(retrieveActiveMatch(x,server))
