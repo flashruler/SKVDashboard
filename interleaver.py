@@ -10,10 +10,11 @@ def getMatchSchedule(event,server):
 def generateCSV(interleavedSchedule):
     df=pd.DataFrame.from_dict(interleavedSchedule)
     #data cleanup
-    df.drop(["finished","time","matchState"], axis=1)
+    df.drop(columns=['time'])
 
     print(df)
 
+#probably the most broken function here
 def interleaver(active,server):
     schedules=[]
     interleavedSchedule=[]
@@ -23,6 +24,7 @@ def interleaver(active,server):
     for x in schedules:
         if len(x)>maxMatchNum:
             maxMatchNum=len(x)
+    #yikes, to fix in the future
     for x in range(maxMatchNum):
         for i in schedules:
             try:

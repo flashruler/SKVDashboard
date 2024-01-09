@@ -1,4 +1,3 @@
-import tkinter as tk
 from api import generateKey, keyCheck
 from tournamentSchedule import pollEvents,getActiveEvents
 from interleaver import interleaver
