@@ -15,32 +15,6 @@ def generateCSV(interleavedSchedule):
     df=df.drop(columns=['time'])
     print(df)
 
-#probably the most broken function here
-# def interleaverOld(active,server):
-#     schedules=[]
-#     interleavedSchedule=[]
-#     maxMatchNum=0
-#     for x in active:
-#         schedules.append(getMatchSchedule(x,server))
-#     for x in schedules:
-#         if len(x)>maxMatchNum:
-#             maxMatchNum=len(x)
-#     #yikes, to fix in the future
-#     for x in range(maxMatchNum):
-#         for i in schedules:
-#             try:
-#                 for j in range(len(i)):
-#                     if i[j]["matchNumber"]==x+1:
-#                         interleavedSchedule.append(i[j])
-                    
-#             except IndexError:
-#                 pass
-#             continue
-
-
-#     generateCSV(interleavedSchedule)
-#     return interleavedSchedule
-
 def interleaver(active,server):
     schedules=[]
     interleavedSchedule = []
@@ -50,5 +24,6 @@ def interleaver(active,server):
     for l in b:
         interleavedSchedule.extend(l)
     interleavedSchedule = [i for i in interleavedSchedule if i is not None]
+    generateCSV(interleavedSchedule)
     return interleavedSchedule
 

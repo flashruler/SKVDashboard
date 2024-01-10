@@ -13,7 +13,7 @@ while not isActive:
 else:
     print("Key is Active!")
 while isActive:
-    query=input("What are you trying to do? Enter a number 1. Load events 2. Show Active Events 3. Generate Interleaved Schedule")
+    query=input("What are you trying to do? Enter a number 1. Load events 2. Show Active Events 3. Generate Interleaved Schedule 4. Find Active Match Data 5. Find Tournament Match   --->   ")
     match query:
         case "1":
             liveEvents= pollEvents("localhost")

@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QMainWindow, QApplication, QPushButton
+from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel, QLineEdit, QVBoxLayout, QWidget
 
 import sys
 
@@ -7,13 +7,27 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        self.setWindowTitle("SKVDashboard V0.01 BETA")
-        self.resize(960, 540)
-        button = QPushButton("CLICK", self) 
-        button.setGeometry(200, 150, 100, 40) 
-        self.setCentralWidget(button)
-        self.show()
+        self.setWindowTitle("My App")
+
+        self.label = QLabel()
+
+        self.input = QLineEdit()
+        self.input.textChanged.connect(self.label.setText)
+
+        layout = QVBoxLayout()
+        layout.addWidget(self.input)
+        layout.addWidget(self.label)
+
+        container = QWidget()
+        container.setLayout(layout)
+
+        # Set the central widget of the Window.
+        self.setCentralWidget(container)
+
 
 app = QApplication(sys.argv)
-w = MainWindow()
+
+window = MainWindow()
+window.show()
+
 app.exec()
