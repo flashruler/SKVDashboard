@@ -1,7 +1,7 @@
 from api import generateKey, keyCheck
 from tournamentSchedule import pollEvents,getActiveEvents
 from interleaver import interleaver
-from tournamentSchedule import retrieveTournamentMatch, retrieveActiveMatch, determineActiveLeague
+from tournamentSchedule import getActiveTournamentMatch, retrieveActiveMatch, determineActiveLeague
 
 isActive=False
 
@@ -26,3 +26,6 @@ while isActive:
         case "4":
             activeLeague=determineActiveLeague(activeLeagues,"localhost")
             print(activeLeague)
+        case "5":
+            tournamentMatch=getActiveTournamentMatch(activeLeague,interleavedSchedule)
+            print(tournamentMatch)

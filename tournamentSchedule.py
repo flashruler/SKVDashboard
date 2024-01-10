@@ -19,20 +19,37 @@ def getActiveEvents(event,server):
             activeEvents.append(x)
     return activeEvents
 
-def retrieveTournamentMatch(match,interleavedSchedule):
-    matchNumber=0
-    isActive=False
-    for x in interleavedSchedule:
-        if match["red"]==x["red"] and match["blue"]==x["blue"]:
-            matchNumber=interleavedSchedule.index(x)+1
-
-        if match["matchState"]!="unplayed":
-            isActive=True
-
-    return matchNumber,isActive
 
 def determineActiveLeague(eventCodes,server):
+    active=""
     for x in eventCodes:
         activeMatch=retrieveActiveMatch(x,server)
-        if activeMatch and activeMatch[0]["matchState"]!= "UNPLAYED" or activeMatch[0]["matchState"]!= "REVIEW":
-            print(retrieveActiveMatch(x,server))
+        try: 
+            match activeMatch[0]["matchState"]:
+                case "UNPLAYED": 
+                    active="unplayed"
+                case "REVIEW":
+                    active="review"
+                case "AUTONOMOUS":
+                    active=retrieveActiveMatch(x,server)[0]
+                case "TELEOP":
+                    active=retrieveActiveMatch(x,server)[0]
+            # if activeMatch and activeMatch[0]["matchState"]!= "UNPLAYED":
+            #     active=retrieveActiveMatch(x,server)[0]
+        except IndexError:
+            pass
+        continue
+    print(active)
+    return active
+
+def getActiveTournamentMatch(active,interleavedSchedule):
+    activeTournamentMatch=0
+    for x in interleavedSchedule:
+        if active["red"]==x["red"] and active["blue"]==x["blue"]:
+            activeTournamentMatch=interleavedSchedule.index(x)+1
+    return activeTournamentMatch
+
+
+
+
+    
