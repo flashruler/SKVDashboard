@@ -21,6 +21,21 @@ def getActiveEvents(event,server):
         event= requests.get("http://"+server+"/api/v1/events/"+x).json()
         if(event["status"]=="Qualifications"):
             activeEvents.append(x)
+            name=event["name"].split()
+            for x in name:
+                match x:
+                    case "Diophantus":
+                        print(name)
+                    case "Euler":
+                        print(name)
+                    case "Tao":
+                        print(name)
+                    case "Test":
+                        print(name)
+                    case "Test2":
+                        print(name)
+                    case "Test3":
+                        print(name)
     return activeEvents
 
 @reloading
@@ -40,8 +55,7 @@ def determineActiveLeague(eventCodes,server):
 def getActiveTournamentMatch(active,interleavedSchedule):
     for x in interleavedSchedule:
         try:
-            if x["red"]==active["red"] and x["blue"]==active["blue"]:
-                print("Tournament Match is: " + str(interleavedSchedule.index(x)+1))
+            if x["red"]==active["red"]:
                 return interleavedSchedule.index(x)+1
         except TypeError:
             pass
