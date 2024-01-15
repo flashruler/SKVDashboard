@@ -46,6 +46,8 @@ def interleaver(active,server):
     for l in b:
         interleavedSchedule.extend(l)
     interleavedSchedule = [i for i in interleavedSchedule if i is not None]
-    df= generateCSV(interleavedSchedule)
-    return df
+
+    print(interleavedSchedule)
+    generateCSV(interleavedSchedule)
+    return interleavedSchedule
 

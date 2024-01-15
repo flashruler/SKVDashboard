@@ -55,7 +55,7 @@ def determineActiveLeague(eventCodes,server):
 def getActiveTournamentMatch(active,interleavedSchedule):
     for x in interleavedSchedule:
         try:
-            if x["red"]==active["red"]:
+            if x["red"]==active["red"] and x["blue"]==active["blue"]:
                 return interleavedSchedule.index(x)+1
         except TypeError:
             pass

@@ -1,8 +1,7 @@
 import customtkinter as ctk
-from api import generateKey,keyCheck
+from api import generateKey
 from tournamentSchedule import pollEvents,getActiveEvents
 from interleaver import interleaver
-import pandas as pd 
 import csv
 
 ctk.set_appearance_mode("dark")
@@ -14,7 +13,6 @@ class Dashboard(ctk.CTk):
         ctk.CTk.__init__(self)
         self.geometry("640x480")
         self.title("SKVDashboard")
-        self.df = pd.DataFrame()
 
         #define frames
         self.frame = ctk.CTkFrame(master=self)
